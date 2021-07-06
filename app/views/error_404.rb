@@ -4,7 +4,7 @@ class Error404
     def render
       "<head>
       <style>
-        #{css_in_head}
+        #{css}
       </style>
       </head>
       #{html}"
@@ -40,7 +40,7 @@ class Error404
      </section>"
     end
 
-    def css_in_head
+    def css
       ".page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
     }
 
