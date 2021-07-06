@@ -6,6 +6,8 @@ class BaseRoutes
     DELETE = 'DELETE'
   ]
 
+  attr_reader :routes
+
   def initialize
     @routes = RoutesHash.new
     define_routes
@@ -30,6 +32,12 @@ class BaseRoutes
 
     def get(method, request_line)
       @hash[method][request_line]
+    end
+
+    def list_all
+      @hash.each do |key, value|
+        puts "#{key}:#{value}"
+      end
     end
   end
 

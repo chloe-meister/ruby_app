@@ -13,6 +13,8 @@ while session = server.accept
   puts "Received a #{method} request to #{path} with #{version}"
 
   routes = Routes.new
+  routes.routes.list_all
+
   response = routes.resolve(method, path)
 
   # Send it
