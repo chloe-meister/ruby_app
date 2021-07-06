@@ -11,14 +11,12 @@ PAGES = {
   '/news' => "We haven't made much news yet with this server, but stay tuned"
 }.freeze
 
-PAGE_NOT_FOUND = "Sorry, there's nothing here."
+PAGE_NOT_FOUND = new Error404.render
 
 while session = server.accept
   request = session.gets
-  puts request
-
-  split_request = request&.split(' ')
-  path = split_request[1]
+  method, path, version = request&.split(' ')
+  puts "Received a #{method} request to #{path} with #{version}"
 
   if PAGES.keys.include? path
     status = '200 OK'
@@ -31,6 +29,7 @@ while session = server.accept
   # Build a proper HTTP response
   response = <<~HEREDOC
     HTTP/1.1 #{status}
+    Content-Type: text/html
 
     #{response_body}
   HEREDOC
