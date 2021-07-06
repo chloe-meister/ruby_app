@@ -31,13 +31,15 @@ class BaseRoutes
     end
 
     def get(method, request_line)
-      @hash[method][request_line]
+      @hash.dig(method, request_line)
+    end
+
+    def list(method)
+      @hash[method]
     end
 
     def list_all
-      @hash.each do |key, value|
-        puts "#{key}:#{value}"
-      end
+      @hash
     end
   end
 
