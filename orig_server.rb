@@ -2,7 +2,7 @@
 
 require 'socket'
 require 'net/http'
-require_relative 'app/views/error_404'
+require_relative 'app/views/errors/not_found'
 
 server = TCPServer.new 5678
 

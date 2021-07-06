@@ -1,19 +1,20 @@
-class Error404
+require_relative '../../../resources/base_view'
 
-  class << self
-    def render
-      "<head>
+class NotFound < BaseView
+
+  def render
+    respond(404, html)
+  end
+
+  private
+
+  def html
+    "<head>
       <style>
         #{css}
       </style>
       </head>
-      #{html}"
-    end
-
-    private
-
-    def html
-      "<section class='page_404'>
+      <section class='page_404'>
       <div class='container'>
       <div class='row'>
       <div class='col-sm-12 '>
@@ -38,10 +39,10 @@ class Error404
           </div>
         </div>
      </section>"
-    end
+  end
 
-    def css
-      ".page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+  def css
+    ".page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
     }
 
     .page_404  img{ width:100%;}
@@ -69,6 +70,5 @@ class Error404
         margin: 20px 0;
       display: inline-block;}
        .contant_box_404{ margin-top:-50px;}"
-    end
   end
 end
