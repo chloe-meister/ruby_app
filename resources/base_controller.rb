@@ -1,9 +1,15 @@
 class BaseController
+
+  def initialize(params = {})
+    @params = params
+  end
+
   def render(view, opts={})
     require_relative "../app/views/#{controller_name}/#{view}"
     view_formatted = view.to_s.split('_').map(&:capitalize).join
+    view_class = self.class.const_get(view_formatted)
 
-    self.class.const_get(view_formatted).send(:new).send(:render)
+    view_class.new(@params).render
   end
 
   private
