@@ -2,6 +2,7 @@
 
 require 'socket'
 require 'net/http'
+require_relative 'app/views/error_404'
 
 server = TCPServer.new 5678
 
@@ -11,7 +12,7 @@ PAGES = {
   '/news' => "We haven't made much news yet with this server, but stay tuned"
 }.freeze
 
-PAGE_NOT_FOUND = new Error404.render
+PAGE_NOT_FOUND = Error404.render
 
 while session = server.accept
   request = session.gets

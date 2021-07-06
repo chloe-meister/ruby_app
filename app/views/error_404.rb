@@ -1,16 +1,19 @@
 class Error404
 
-  def render
-    "<head>
+  class << self
+    def render
+      "<head>
       <style>
         #{css_in_head}
       </style>
       </head>
       #{html}"
-  end
+    end
 
-  def html
-    "<section class='page_404'>
+    private
+
+    def html
+      "<section class='page_404'>
       <div class='container'>
       <div class='row'>
       <div class='col-sm-12 '>
@@ -35,10 +38,10 @@ class Error404
           </div>
         </div>
      </section>"
-  end
+    end
 
-  def css_in_head
-    ".page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+    def css_in_head
+      ".page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
     }
 
     .page_404  img{ width:100%;}
@@ -66,5 +69,6 @@ class Error404
         margin: 20px 0;
       display: inline-block;}
        .contant_box_404{ margin-top:-50px;}"
+    end
   end
 end
