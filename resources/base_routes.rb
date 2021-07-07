@@ -14,11 +14,12 @@ class BaseRoutes
   end
 
   def resolve(method_token, request_line)
-    controller, action = @routes.get(method_token, request_line)
-    return unless controller && action
+    controller_name, action = @routes.get(method_token, request_line)
+    return unless controller_name && action
 
-    require_relative "../app/controllers/#{controller}_controller"
-    self.class.const_get("#{controller.capitalize}Controller").send(:new).send(action)
+    require_relative "../app/controllers/#{controller_name}_controller"
+    controller = self.class.const_get("#{controller_name.capitalize}Controller")
+    controller.new(method_token).send(action)
   end
 
   class RoutesHash
@@ -45,9 +46,17 @@ class BaseRoutes
 
   private
 
-  def get(path, opts={})
+  def match(path, method, opts={})
     controller, action = opts[:to].split('#')
-    @routes.add(GET, path, controller, action)
+    @routes.add(method, path, controller, action)
+  end
+
+  def post(path, opts={})
+    match(path, POST, opts)
+  end
+
+  def get(path, opts={})
+    match(path, GET, opts)
   end
 
   def define_routes; end

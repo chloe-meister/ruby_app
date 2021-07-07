@@ -1,7 +1,8 @@
 class BaseController
 
-  def initialize(params = {})
+  def initialize(method = GET, params = {})
     @params = params
+    @method = method
   end
 
   def render(view, opts={})

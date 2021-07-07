@@ -8,6 +8,10 @@ class BooksController < BaseController
   end
 
   def create
-    render(:new)
+    if @method == 'GET'
+      render(:new)
+    else
+      # save the data
+    end
   end
 end
