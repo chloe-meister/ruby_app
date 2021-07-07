@@ -1,4 +1,6 @@
 ---
 books:
-  date: today
+- date: today
   isbn: abcdef
+- date: one day
+  isbn: 12234
