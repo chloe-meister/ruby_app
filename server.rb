@@ -19,19 +19,23 @@ loop do
 
   unless request_line.nil?
     # extract headers
-    content_length = nil
+    headers = {}
     request.each do |line|
-      if line.include?('Content-Length: ')
+      if line.include?(': ')
         key, value = line.split(': ')
-        content_length = value.to_i
+        headers[key] = value
       end
     end
-    puts "CL: #{content_length}"
+    puts "Headers: #{headers}"
 
-    # extract body
-    body = session.read(content_length)
-    data = URI.decode_www_form(body).to_h
-    puts "data: #{data}"
+    content_length = headers['Content-Length']&.to_i
+    puts "CL: #{content_length}"
+    if content_length && headers['Content-Type'] == 'application/x-www-form-urlencoded'
+      # extract body
+      body = session.read(content_length)
+      data = URI.decode_www_form(body).to_h
+      puts "data: #{data}"
+    end
 
     # Create the routes
     routes = Routes.new
