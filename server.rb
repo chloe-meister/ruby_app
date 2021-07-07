@@ -3,6 +3,7 @@
 require 'socket'
 Dir['resources/*.rb'].each { |file| require_relative file }
 require_relative 'config/routes'
+require 'uri'
 
 server = TCPServer.new 5678
 
@@ -15,7 +16,23 @@ loop do
   puts "Request #{request}"
 
   request_line = request[0]
+
   unless request_line.nil?
+    # extract headers
+    content_length = nil
+    request.each do |line|
+      if line.include?('Content-Length: ')
+        key, value = line.split(': ')
+        content_length = value.to_i
+      end
+    end
+    puts "CL: #{content_length}"
+
+    # extract body
+    body = session.read(content_length)
+    data = URI.decode_www_form(body).to_h
+    puts "data: #{data}"
+
     # Create the routes
     routes = Routes.new
 
