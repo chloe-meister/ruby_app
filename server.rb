@@ -17,7 +17,6 @@ while session = server.accept
 
     # Check the route exists
     list = routes.routes.list(method)
-    puts list
     response = list.keys.include?(path) ? routes.resolve(method, path) : routes.resolve('GET', '/page-not-found')
 
     # Send it
