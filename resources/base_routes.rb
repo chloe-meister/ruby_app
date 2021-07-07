@@ -13,7 +13,7 @@ class BaseRoutes
     define_routes
   end
 
-  def resolve(request)
+  def resolve(request, data = nil, store = nil)
     method, path, version = request.split(' ')
     puts "Received a #{method} request to #{path} with #{version}"
 
@@ -23,12 +23,10 @@ class BaseRoutes
       controller_name, action = @routes.get(method, path)
       return unless controller_name && action
 
-      # Get the header and body out of the request
-
       require_relative "../app/controllers/#{controller_name}_controller"
       controller = self.class.const_get("#{controller_name.capitalize}Controller")
 
-      controller.new(method).send(action)
+      controller.new(method, data, store).send(action)
     else
       # redirect to page not found
     end

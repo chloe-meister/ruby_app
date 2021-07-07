@@ -11,7 +11,8 @@ class BooksController < BaseController
     if @method == 'GET'
       render(:new)
     else
-      render(:index)
+
+      render(:test)
     end
   end
 end
