@@ -8,7 +8,7 @@ require 'yaml/store'
 
 server = TCPServer.new 5678
 #Create a YAML Store
-store = YAML::Store.new('persistance/data.yml')
+store = YAML::Store.new('resources/persistence/data.yml')
 
 loop do
   session = server.accept

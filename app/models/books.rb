@@ -1,5 +1,3 @@
-class Books <
-  def initialize
-    super
-  end
+class Books < BaseModel
+
 end

@@ -1,7 +1,8 @@
 class BaseView
 
-  def initialize(params = {})
+  def initialize(params = {}, data = nil)
     @params = params
+    @data = data
   end
 
   def respond(status_code, message_body)

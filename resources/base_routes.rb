@@ -25,8 +25,11 @@ class BaseRoutes
 
       require_relative "../app/controllers/#{controller_name}_controller"
       controller = self.class.const_get("#{controller_name.capitalize}Controller")
+      require_relative "../app/models/#{controller_name}"
+      model_name = self.class.const_get("#{controller_name.capitalize}")
+      model = model_name.new(store)
 
-      controller.new(method, data, store).send(action)
+      controller.new(method, model, data).send(action)
     else
       # redirect to page not found
     end

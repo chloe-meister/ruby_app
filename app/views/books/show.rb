@@ -1,0 +1,3 @@
+class Show < BaseView
+
+end

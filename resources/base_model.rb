@@ -4,11 +4,25 @@ class BaseModel
     @store = store
   end
 
-  def save(model, data)
+  def save(data)
     @store.transaction do
-      puts data.transform_keys(&:to_sym)
-      store[model] << data.transform_keys(&:to_sym)
+      @store[name] << data
     end
   end
+
+  def get
+    all_data = {}
+    @store.transaction do
+      all_data = @store[name]
+    end
+    all_data
+  end
+
+  private
+
+  def name
+    self.class.to_s.downcase
+  end
+
 end
 
