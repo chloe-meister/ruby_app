@@ -4,3 +4,5 @@ books:
   isbn: abcdef
 - date: one day
   isbn: 12234
+- date: tomorrow
+  isbn: the lord of the ring

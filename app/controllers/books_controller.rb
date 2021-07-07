@@ -13,7 +13,7 @@ class BooksController < BaseController
       render(:new)
     else
       @model.save(@data)
-      render(:test)
+      index
     end
   end
 
