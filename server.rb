@@ -7,17 +7,20 @@ require_relative 'config/routes'
 server = TCPServer.new 5678
 
 while session = server.accept
+  loop do
+    line = session.gets
+    break if line == "\r\n" || line.nil?
+  end
+
   request = session.gets
+  puts request
 
   unless request.nil?
-    method, path, version = request.split(' ')
-    puts "Received a #{method} request to #{path} with #{version}"
-
+    # Create the routes
     routes = Routes.new
 
-    # Check the route exists
-    list = routes.routes.list(method)
-    response = list.keys.include?(path) ? routes.resolve(method, path) : routes.resolve('GET', '/page-not-found')
+    # Resolve
+    response = routes.resolve(request)
 
     # Send it
     session.print response

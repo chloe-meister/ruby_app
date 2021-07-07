@@ -11,7 +11,7 @@ class BooksController < BaseController
     if @method == 'GET'
       render(:new)
     else
-      # save the data
+      render(:index)
     end
   end
 end

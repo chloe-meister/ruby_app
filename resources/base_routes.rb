@@ -13,13 +13,25 @@ class BaseRoutes
     define_routes
   end
 
-  def resolve(method_token, request_line)
-    controller_name, action = @routes.get(method_token, request_line)
-    return unless controller_name && action
+  def resolve(request)
+    method, path, version = request.split(' ')
+    puts "Received a #{method} request to #{path} with #{version}"
 
-    require_relative "../app/controllers/#{controller_name}_controller"
-    controller = self.class.const_get("#{controller_name.capitalize}Controller")
-    controller.new(method_token).send(action)
+    # Check the route exists
+    list = @routes.list(method)
+    if list.keys.include?(path)
+      controller_name, action = @routes.get(method, path)
+      return unless controller_name && action
+
+      # Get the header and body out of the request
+
+      require_relative "../app/controllers/#{controller_name}_controller"
+      controller = self.class.const_get("#{controller_name.capitalize}Controller")
+
+      controller.new(method).send(action)
+    else
+      # redirect to page not found
+    end
   end
 
   class RoutesHash
