@@ -1,5 +1,3 @@
-require_relative '../../../resources/base_view'
-
 class NotFound < BaseView
 
   def render

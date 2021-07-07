@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'socket'
+Dir['resources/*.rb'].each { |file| require_relative file }
 require_relative 'config/routes'
 
 server = TCPServer.new 5678
