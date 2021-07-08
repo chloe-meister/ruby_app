@@ -8,9 +8,13 @@ class BooksController < BaseController
     if @method == 'GET'
       render(:new)
     else
-      @model.save(@data)
+      book_data = @model.find_book_info(@data)
+      @model.save(book_data) if book_data
       index
     end
+  rescue StandardError => e
+    @data = e.message
+    render(:error, {controller: 'errors'})
   end
 
   private

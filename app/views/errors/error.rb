@@ -350,7 +350,7 @@ class Error < BaseView
     </div>
 
    <h1 class='MainTitle'>
-        Houston, we have a problem.
+        Houston, we have a problem: #{@data}
       </h1>
   </div>
 
