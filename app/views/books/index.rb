@@ -6,14 +6,34 @@ class Index < BaseView
   private
 
   def html
-    response_message = '<h1> Books! </h1>'
-    response_message << "<a href=#{@url}/books/new>Click</a> to add a new book"
-    response_message << '<p>Bought books:</p><ul>'
+    response_message = "<head>
+      <style>
+        #{css}
+      </style>
+      </head><h1> My Books! </h1>"
+    response_message << "<table><thead><tr><th colspan='7'>Books</th></tr></thead>"
+    response_message << '<tr><td>Date bought</td><td>Cover</td><td>ISBN</td><td>Title</td><td>Author</td>
+<td>Date published</td><td>Pages</td></tr>'
 
     @data&.each do |books|
-      response_message << "<li> On <b>#{books['date']}</b>, I bought this book: #{books['isbn']} !</li>"
+      response_message << "<tr><td>#{books['date']}</td><td><img src='#{books['image']}'alt='#{books['title']}'/></td>
+<td>#{books['isbn']}</td><td>#{books['title']}</td><td>#{books['author']}</td><td>#{books['published']}</td>
+<td>#{books['pages']}</td></tr>"
     end
-    response_message << '</ul>'
+    response_message << "</table><p></p><button onclick='window.location.href='/books/new''>Click to add a new book</button>"
     response_message
+  end
+
+  def css
+"    table,
+    td {
+      border: 1px solid #333;
+    }
+
+    thead,
+    tfoot {
+      background-color: #333;
+        color: #fff;
+    }"
   end
 end

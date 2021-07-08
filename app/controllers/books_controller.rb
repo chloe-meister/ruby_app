@@ -8,7 +8,8 @@ class BooksController < BaseController
     if @method == 'GET'
       render(:new)
     else
-      book_data = @model.find_book_info(@data)
+      symb_data = @data.transform_keys(&:to_sym)
+      book_data = @model.find_book_info(symb_data)
       @model.save(book_data) if book_data
       index
     end

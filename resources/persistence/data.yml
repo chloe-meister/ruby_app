@@ -1,37 +1,15 @@
 ---
 books:
-- date: today
-  isbn: abcdef
-- date: one day
-  isbn: 12234
-- date: tomorrow
-  isbn: the lord of the ring
-- date: jfhjfl
-  isbn: fwefwfw
-- date: ewwww
-  isbn: '0964292157'
 - date: fwefwe
   isbn: '0964292157'
-  :title: Woodstock Handmade Houses
-  :pages: 90
-  :published: November 1994
-  :image: https://covers.openlibrary.org/b/id/4815619-S.jpg
-- date: new
-  isbn: '0140328726'
-  :title: Fantastic Mr. Fox
-  :pages: 96
-  :published: October 1, 1988
-  :image: https://covers.openlibrary.org/b/id/8739161-S.jpg
-- date: wdesfd
-  isbn: '0140328726'
-  :title: Fantastic Mr. Fox
-  :pages: 96
-  :published: October 1, 1988
-  :image: https://covers.openlibrary.org/b/id/8739161-S.jpg
+  title: Woodstock Handmade Houses
+  pages: 90
+  published: November 1994
+  image: https://covers.openlibrary.org/b/id/4815619-S.jpg
 - date: qwefwrgdf
   isbn: '0140328726'
-  :title: Fantastic Mr. Fox
-  :pages: 96
-  :published: October 1, 1988
-  :image: https://covers.openlibrary.org/b/id/8739161-S.jpg
-  :author: Roald Dahl
+  title: Fantastic Mr. Fox
+  pages: 96
+  published: October 1, 1988
+  image: https://covers.openlibrary.org/b/id/8739161-S.jpg
+  author: Roald Dahl
