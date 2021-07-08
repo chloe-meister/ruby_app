@@ -5,8 +5,10 @@ Dir['resources/*.rb'].each { |file| require_relative file }
 require_relative 'config/routes'
 require 'uri'
 require 'yaml/store'
+require_relative 'config/application'
 
-server = TCPServer.new 5678
+server = TCPServer.new Application.port
+
 #Create a YAML Store
 store = YAML::Store.new('resources/persistence/data.yml')
 

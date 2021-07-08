@@ -4,9 +4,9 @@ class New < BaseView
   end
 
   def html
-    "<form action='/add/book' method='post' enctype='application/x-xxx-form-urlencoded'>
+    "<form action='/books/new' method='post' enctype='application/x-xxx-form-urlencoded'>
 <p><label>Date bought <input type='date' name='date'></label></p>
-<p><label>ISBN <input type='number' name='step_count'></label></p>
+<p><label>ISBN <input name='isbn'></label></p>
 <p><button>Add new entry</button></p>
 </form>"
   end

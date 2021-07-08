@@ -4,10 +4,6 @@ class BooksController < BaseController
     render(:index)
   end
 
-  def show
-    render(:show)
-  end
-
   def create
     if @method == 'GET'
       render(:new)
