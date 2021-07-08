@@ -25,13 +25,24 @@ class BaseRoutes
 
       require_relative "../app/controllers/#{controller_name}_controller"
       controller = self.class.const_get("#{controller_name.capitalize}Controller")
-      require_relative "../app/models/#{controller_name}"
-      model_name = self.class.const_get("#{controller_name.capitalize}")
-      model = model_name.new(store)
+
+      # Allow controllers to exists without models
+      begin
+        require_relative "../app/models/#{controller_name}"
+        model_name = self.class.const_get("#{controller_name.capitalize}")
+        model = model_name.new(store)
+      rescue LoadError
+        model = nil
+        controller.new(method, model, data).send(action)
+      end
 
       controller.new(method, model, data).send(action)
     else
       # redirect to page not found
+      model = nil
+      require_relative '../app/controllers/errors_controller'
+      controller = self.class.const_get('ErrorsController')
+      controller.new(GET, model, data).send('/page-not-found')
     end
   end
 
