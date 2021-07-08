@@ -20,7 +20,8 @@ class Index < BaseView
 <td>#{books['isbn']}</td><td>#{books['title']}</td><td>#{books['author']}</td><td>#{books['published']}</td>
 <td>#{books['pages']}</td></tr>"
     end
-    response_message << "</table><p></p><button onclick='window.location.href='/books/new''>Click to add a new book</button>"
+    onclick = "window.location.href='/books/new'"
+    response_message << "</table><p></p><button onclick=\"#{onclick}\">Click to add a new book</button>"
     response_message
   end
 
